@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((err) => console.error(`Error loading ${file}:`, err));
   };
 
-  loadSection("header", "./header.html");
-  loadSection("footer", "./footer.html");
+  loadSection("header", "header.html");
+  loadSection("footer", "footer.html");
 });
 
 //   NAVBAR TOGGLE
@@ -56,7 +56,7 @@ function addToCart() {
   }
 
   saveCartItems(items);
-  window.location.href = "../Assignment2/cart.html";
+  window.location.href = "Assignment2/cart.html";
 }
 
 //   CART PAGE
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     localStorage.setItem("orderData", JSON.stringify(orderData));
 
-    window.location.href = "../Assignment2/payment.html";
+    window.location.href = "Assignment2/payment.html";
   });
 });
 
@@ -222,7 +222,7 @@ function setupPaymentOptions() {
     }
 
     localStorage.setItem("orderData", JSON.stringify(data));
-    window.location.href = "../Assignment2/review.html";
+    window.location.href = "Assignment2/review.html";
   });
 }
 
@@ -294,7 +294,7 @@ function setupPlaceOrder() {
     alert(" Your order has been placed successfully!");
     localStorage.removeItem("cartItems");
     localStorage.removeItem("orderData");
-    setTimeout(() => (window.location.href = "../Assignment1/index.html"), 500);
+    setTimeout(() => (window.location.href = "Assignment1/index.html"), 500);
   });
 }
 
