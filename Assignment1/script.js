@@ -16,26 +16,30 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((err) => console.error(`Error loading ${file}:`, err));
   };
 
-  function getHeaderFooterPath() {
-  const path = window.location.pathname;
+document.addEventListener("DOMContentLoaded", () => {
 
-  // If we are on index.html (root level)
-  if (path.endsWith("index.html") || path === "/" || path === "/index") {
-    return "./Assignment1/";
+  function getHeaderFooterPath() {
+    const path = window.location.pathname;
+
+    // Get the last part of URL (like index.html, cart.html)
+    const page = path.split("/").pop();
+
+    // ---- CASE 1: HOME PAGE (index.html OR no filename) ----
+    if (page === "" || page === "index.html") {
+      return "Assignment1/";   // IMPORTANT (NO ./)
+    }
+
+    // ---- CASE 2: ANY PAGE INSIDE A FOLDER (cart, cv, etc.) ----
+    return "../Assignment1/";
   }
 
-  // All other pages inside folders (cart, payment, midExam, etc.)
-  return "../Assignment1/";
-}
-
-document.addEventListener("DOMContentLoaded", () => {
   const basePath = getHeaderFooterPath();
 
   const loadSection = (id, file) => {
     fetch(basePath + file)
       .then(res => res.text())
       .then(html => document.getElementById(id).innerHTML = html)
-      .catch(err => console.error(`Error loading ${file}:`, err));
+      .catch(err => console.log("Error loading:", basePath + file, err));
   };
 
   loadSection("header", "header.html");
