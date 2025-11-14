@@ -16,8 +16,32 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((err) => console.error(`Error loading ${file}:`, err));
   };
 
-  loadSection("header", "./Assignment1/header.html");
-  loadSection("footer", "./Assignment1/footer.html");
+  function getHeaderFooterPath() {
+  const path = window.location.pathname;
+
+  // If we are on index.html (root level)
+  if (path.endsWith("index.html") || path === "/" || path === "/index") {
+    return "./Assignment1/";
+  }
+
+  // All other pages inside folders (cart, payment, midExam, etc.)
+  return "../Assignment1/";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const basePath = getHeaderFooterPath();
+
+  const loadSection = (id, file) => {
+    fetch(basePath + file)
+      .then(res => res.text())
+      .then(html => document.getElementById(id).innerHTML = html)
+      .catch(err => console.error(`Error loading ${file}:`, err));
+  };
+
+  loadSection("header", "header.html");
+  loadSection("footer", "footer.html");
+});
+
 });
 
 //   NAVBAR TOGGLE
