@@ -1,0 +1,212 @@
+header {
+  font-size: 13px;
+  display: flex;
+  justify-content: space-around;
+}
+.right {
+  margin-right: 0%;
+}
+.bars {
+  display: block;
+  color: #808d2b;
+  margin-left: 7%;
+}
+.bars i {
+  font-size: 28px;
+  transform: scaleY(0.7);
+}
+
+.top-bar {
+  display: none;
+}
+.shownavbar {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 40%;
+  position: absolute;
+  z-index: 2;
+  padding: 1%;
+  border-top: none;
+  margin-left: 7%;
+}
+.shownavbar .box {
+  flex-direction: row;
+  padding: 2% 4%;
+}
+.shownavbar .first {
+  font-size: 20px;
+  padding: 2%;
+}
+.shownavbar #home,
+.box:hover {
+  border-top: none;
+  padding: 2% 4%;
+}
+.shownavbar .content {
+  position: relative;
+  z-index: 1;
+}
+.firstLine {
+  font-size: 40px;
+}
+.secondLine {
+  font-size: 40px;
+}
+.text h1 {
+  font-size: 40px;
+  width: 75%;
+}
+.text p {
+  font-size: 14px;
+  line-height: 22px;
+}
+.end-pic {
+  height: 50vh;
+}
+.end-content {
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+}
+.section {
+  height: 200px;
+}
+.section h3 {
+  font-size: 14pt;
+}
+.about {
+  font-size: 13px;
+}
+.date {
+  font-size: 11px;
+}
+
+@media (max-width: 770px) {
+  header {
+    background-color: white;
+    font-size: 13px;
+    flex-direction: column;
+    justify-content: center;
+    color: #bbbbbb;
+  }
+  .contact {
+    display: none;
+  }
+  .right,
+  .left {
+    justify-content: center;
+  }
+  .right i {
+    justify-content: center;
+    padding: 0px 11px;
+  }
+  .right i,
+  .left i {
+    width: 11px;
+    height: 11px;
+    padding: 0px 5px;
+    color: #bbbbbb;
+  }
+  .logo-section {
+    display: flex;
+    position: relative;
+  }
+  .logo {
+    padding: 20px 0px;
+  }
+  .logo-img {
+    height: 130px;
+    width: 230px;
+  }
+  .bars {
+    margin: 4% 2%;
+  }
+  .shownavbar {
+    margin-top: 0px;
+    width: 100%;
+    position: static;
+    margin-left: 4%;
+  }
+  .shownavbar .box {
+    flex-direction: row;
+    padding: 5px;
+  }
+  .shownavbar .first {
+    font-size: 20px;
+    padding: 5px;
+  }
+  .shownavbar #home,
+  .box:hover {
+    border-top: none;
+    padding: 5px;
+  }
+  .shownavbar .content {
+    position: static;
+    z-index: 1;
+  }
+  .end-pic {
+    height: 120vh;
+  }
+  .end-content {
+    display: flex;
+    flex-direction: column;
+    top: 3%;
+    font-size: 14px;
+  }
+  .circle {
+    height: 7px;
+    width: 7px;
+    margin: 5px 2px 0px 2px;
+  }
+  .section h3 {
+    font-size: 14px;
+  }
+  .section {
+    width: 80%;
+    height: 100px;
+    padding: 30px 0px;
+  }
+  .text h1 {
+    font-size: 35px;
+  }
+
+  .text p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .secLinks,
+  .about-sec {
+    height: 130px;
+  }
+
+  .date {
+    margin-left: 3%;
+  }
+  .comment {
+    margin-left: 6%;
+  }
+
+  footer {
+    font-size: 14px;
+  }
+}
+@media (max-width: 400px) {
+  .firstLine {
+    font-size: 30px;
+  }
+  .secondLine {
+    font-size: 30px;
+  }
+  .end-pic {
+    height: 100vh;
+  }
+  .text h1 {
+    font-size: 28px;
+  }
+  .text p {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
