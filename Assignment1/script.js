@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((err) => console.error(`Error loading ${file}:`, err));
   };
 
-  loadSection("header", "header.html");
-  loadSection("footer", "footer.html");
+  loadSection("header", "Assignment1/header.html");
+  loadSection("footer", "Assignment1/footer.html");
 });
 
 //   NAVBAR TOGGLE
