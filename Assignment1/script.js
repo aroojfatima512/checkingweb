@@ -16,8 +16,32 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((err) => console.error(`Error loading ${file}:`, err));
   };
 
- loadSection("header", "./Assignment1/header.html");
-loadSection("footer", "./Assignment1/footer.html");
+document.addEventListener("DOMContentLoaded", () => {
+  const path = window.location.pathname;
+
+  // REMOVE repo name from path (GitHub Pages fix)
+  const cleanedPath = path.replace("/checkingweb", "");
+
+  const segments = cleanedPath.split("/").filter(s => s.length > 0);
+
+  let prefix = "./";
+  if (segments.length > 1) {
+    prefix = "../".repeat(segments.length - 1);
+  }
+
+  const loadSection = (id, file) => {
+    fetch(prefix + file)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById(id).innerHTML = html;
+      })
+      .catch(err => console.error(`Error loading ${prefix + file}`, err));
+  };
+
+  loadSection("header", "Assignment1/header.html");
+  loadSection("footer", "Assignment1/footer.html");
+});
+
 
 });
 
