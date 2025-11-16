@@ -9,17 +9,32 @@ function saveCartItems(items) {
 
 //   HEADER & FOOTER LOADING
 document.addEventListener("DOMContentLoaded", () => {
+  const path = window.location.pathname;
+
+  // Detect depth of the current file
+  const depth = path.split("/").length - 2; 
+  // Example:
+  // "/repo/index.html" → depth=1
+  // "/repo/Assignment2/cart.html" → depth=2
+
+  // Build prefix based on how deep the file is
+  let prefix = "";
+  for (let i = 1; i < depth; i++) {
+    prefix += "../";
+  }
+  if (prefix === "") prefix = "./";
+
   const loadSection = (id, file) => {
-    fetch(file)
-      .then((res) => res.text())
-      .then((html) => (document.getElementById(id).innerHTML = html))
-      .catch((err) => console.error(`Error loading ${file}:`, err));
+    fetch(prefix + file)
+      .then(res => res.text())
+      .then(html => (document.getElementById(id).innerHTML = html))
+      .catch(err => console.error(`Error loading ${prefix + file}:`, err));
   };
 
- loadSection("header", "./Assignment1/header.html");
-loadSection("footer", "./Assignment1/footer.html");
-
+  loadSection("header", "Assignment1/header.html");
+  loadSection("footer", "Assignment1/footer.html");
 });
+
 
 //   NAVBAR TOGGLE
 function shownavbar() {
