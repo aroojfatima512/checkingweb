@@ -17,34 +17,32 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
 document.addEventListener("DOMContentLoaded", () => {
+  const path = window.location.pathname;
 
-  function getHeaderFooterPath() {
-    const path = window.location.pathname;
+  // Detect depth of the current file
+  const depth = path.split("/").length - 2; 
+  // Example:
+  // "/repo/index.html" → depth=1
+  // "/repo/Assignment2/cart.html" → depth=2
 
-    // Get the last part of URL (like index.html, cart.html)
-    const page = path.split("/").pop();
-
-    // ---- CASE 1: HOME PAGE (index.html OR no filename) ----
-    if (page === "" || page === "index.html") {
-      return "Assignment1/";   // IMPORTANT (NO ./)
-    }
-
-    // ---- CASE 2: ANY PAGE INSIDE A FOLDER (cart, cv, etc.) ----
-    return "../Assignment1/";
+  // Build prefix based on how deep the file is
+  let prefix = "";
+  for (let i = 1; i < depth; i++) {
+    prefix += "../";
   }
-
-  const basePath = getHeaderFooterPath();
+  if (prefix === "") prefix = "./";
 
   const loadSection = (id, file) => {
-    fetch(basePath + file)
+    fetch(prefix + file)
       .then(res => res.text())
-      .then(html => document.getElementById(id).innerHTML = html)
-      .catch(err => console.log("Error loading:", basePath + file, err));
+      .then(html => (document.getElementById(id).innerHTML = html))
+      .catch(err => console.error(`Error loading ${prefix + file}:`, err));
   };
 
-  loadSection("header", "header.html");
-  loadSection("footer", "footer.html");
+  loadSection("header", "Assignment1/header.html");
+  loadSection("footer", "Assignment1/footer.html");
 });
+
 
 });
 
