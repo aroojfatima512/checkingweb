@@ -9,20 +9,12 @@ function saveCartItems(items) {
 
 //   HEADER & FOOTER LOADING
 document.addEventListener("DOMContentLoaded", () => {
-  const path = window.location.pathname;
+  const path = window.location.pathname.split("/");
 
-  // Detect depth of the current file
-  const depth = path.split("/").length - 2; 
-  // Example:
-  // "/repo/index.html" → depth=1
-  // "/repo/Assignment2/cart.html" → depth=2
-
-  // Build prefix based on how deep the file is
   let prefix = "";
-  for (let i = 1; i < depth; i++) {
+  for (let i = 3; i < path.length; i++) {
     prefix += "../";
   }
-  if (prefix === "") prefix = "./";
 
   const loadSection = (id, file) => {
     fetch(prefix + file)
@@ -34,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
   loadSection("header", "Assignment1/header.html");
   loadSection("footer", "Assignment1/footer.html");
 });
-
 
 //   NAVBAR TOGGLE
 function shownavbar() {
