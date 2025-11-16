@@ -19,24 +19,23 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname;
 
-  // Detect depth of the current file
-  const depth = path.split("/").length - 2; 
-  // Example:
-  // "/repo/index.html" → depth=1
-  // "/repo/Assignment2/cart.html" → depth=2
+  // REMOVE repo name from path (GitHub Pages fix)
+  const cleanedPath = path.replace("/checkingweb", "");
 
-  // Build prefix based on how deep the file is
-  let prefix = "";
-  for (let i = 1; i < depth; i++) {
-    prefix += "../";
+  const segments = cleanedPath.split("/").filter(s => s.length > 0);
+
+  let prefix = "./";
+  if (segments.length > 1) {
+    prefix = "../".repeat(segments.length - 1);
   }
-  if (prefix === "") prefix = "./";
 
   const loadSection = (id, file) => {
     fetch(prefix + file)
       .then(res => res.text())
-      .then(html => (document.getElementById(id).innerHTML = html))
-      .catch(err => console.error(`Error loading ${prefix + file}:`, err));
+      .then(html => {
+        document.getElementById(id).innerHTML = html;
+      })
+      .catch(err => console.error(`Error loading ${prefix + file}`, err));
   };
 
   loadSection("header", "Assignment1/header.html");
